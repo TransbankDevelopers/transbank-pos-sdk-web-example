@@ -6,8 +6,9 @@ El código importante está en `src/views/Home.vue` donde se encontrarán varios
 
 #Antes de empezar
 Este ejemplo presenta un sistema de caja de demostración que usa el SDK para conectarse y realizar tareas con el POS. 
-Para que el ejemplo funcione correctamente, es necesario tener andando [el cliente del SDK WEB](http://github.com/TransbankDevelopers/transbank-pos-sdk-web-client)
+Para que el ejemplo funcione correctamente, es necesario tener andando [el cliente del SDK Web](http://github.com/TransbankDevelopers/transbank-pos-sdk-web-client)
 
+Además, es importante tener el POS conectado al mismo equipo en el que se ejecuta **el cliente del SDK Web** y en el que también se ejecutará este ejemplo. 
 ## 1. Ejecutar ejemplo
 
 ### A) Usando Docker

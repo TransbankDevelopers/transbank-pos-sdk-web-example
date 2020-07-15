@@ -27,9 +27,9 @@
     </div>
 
     <!-- Detalle de la venta -->
-    <div v-if="saleDetails !== null">
+    <div v-if="saleResponse !== null">
       <h2 class="text-2xl">Respuesta: </h2>
-      <pre>{{ saleDetails }}</pre>
+      <pre>{{ saleResponse }}</pre>
     </div>
 
   </div>
@@ -42,16 +42,16 @@
         methods: {
             doSale() {
                 // Hacer la venta y cuando llegue la respuesta, vaciar la venta y guardar los detalles de la transacción en
-                // la variable saleDetails para poder mostrarlos
+                // la variable saleResponse para poder mostrarlos
                 swal("Solicite al cliente que opere el POS", {
                     buttons: false,
                 })
 
-                this.saleDetails = null
-                POS.doSale(this.total, "ticket1").then((saleDetails) => {
-                    console.log(saleDetails)
-                    //Acá llega la respuesta de la venta. Si saleDetails.responseCode es 0, entonces la comproa fue aprobada
-                    if (saleDetails.responseCode===0) {
+                this.saleResponse = null
+                POS.doSale(this.total, "ticket1").then((saleResponse) => {
+                    console.log(saleResponse)
+                    //Acá llega la respuesta de la venta. Si saleResponse.responseCode es 0, entonces la comproa fue aprobada
+                    if (saleResponse.sale.responseCode === 0) {
                         // Mostramos mensaje de éxito y limpiamos el total de la venta si response code es 0
                         swal("Transacción aprobada", "", "success")
                         this.clearTotal()
@@ -60,7 +60,7 @@
                         swal("Transacción fallida", "La transacción no ha sido aprobada. Puede reintentar pago", "error")
                     }
 
-                    this.saleDetails = saleDetails
+                    this.saleResponse = saleResponse
 
                 })
             },
@@ -74,7 +74,7 @@
         data() {
             return {
                 total: 0,
-                saleDetails: null,
+                saleResponse: null,
                 products: [
                     {
                         "name": "Hamburguesa + papas fritas + bebida",

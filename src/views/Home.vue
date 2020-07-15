@@ -27,19 +27,51 @@
         <!-- Puedes revisar este componente en src/components/NewSale.vue 😌 -->
         <new-sale class="pb-20"></new-sale>
 
-        <div class="flex">
+        <div class="flex flex-wrap border-t">
           <!-- Puedes revisar este componente en src/components/LastSale.vue 😌 -->
-          <last-sale class="md:w-1/3"></last-sale>
-          <load-keys class="md:w-1/3"></load-keys>
+          <div class="box">
+            <last-sale></last-sale>
+          </div>
+          <div class="box">
+            <load-keys></load-keys>
+          </div>
+          <div class="box">
+            <set-normal-mode></set-normal-mode>
+          </div>
+          <div class="box">
+            <close-day></close-day>
+          </div>
+          <div class="box">
+            <get-sales-of-the-day></get-sales-of-the-day>
+          </div>
+          <div class="box">
+            <refund></refund>
+          </div>
+          <div class="box">
+            <get-totals></get-totals>
+          </div>
+
         </div>
 
       </div>
-
 
     </div>
   </div>
 
 </template>
+<style type="text/css">
+  .box {
+    @apply w-full mt-5;
+  }
+  .box > div {
+    @apply shadow-lg p-5 rounded;
+  }
+  @screen md {
+    .box {
+      @apply w-1/3 p-5;
+    }
+  }
+</style>
 
 <script>
     // @ is an alias to /src
@@ -49,10 +81,15 @@
     import NewSale from "../components/NewSale"
     import LastSale from "../components/LastSale"
     import LoadKeys from "../components/LoadKeys"
+    import SetNormalMode from "../components/SetNormalMode"
+    import CloseDay from "../components/CloseDay"
+    import GetSalesOfTheDay from "../components/GetSalesOfTheDay"
+    import Refund from "../components/Refund"
+    import GetTotals from "../components/GetTotals"
 
     export default {
         components: {
-            ConnectToPos, NewSale, LastSale, LoadKeys,
+            ConnectToPos, NewSale, LastSale, LoadKeys, SetNormalMode, CloseDay, GetSalesOfTheDay, Refund, GetTotals
         },
         async mounted() {
             try {

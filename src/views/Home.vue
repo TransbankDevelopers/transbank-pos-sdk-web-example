@@ -96,9 +96,10 @@
                 await POS.connect()
                 this.socketConnected = true
                 let response = await POS.getPortStatus()
-                this.connected = response.success;
+                this.connected = response.connected;
                 this.activePort = response.activePort;
             } catch (e) {
+              console.log(e);
                 swal("No se pudo conectar con el software cliente", "Verifique que el cliente se haya inicializado en este computador", "error")
             }
         },

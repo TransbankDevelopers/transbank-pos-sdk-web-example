@@ -4,6 +4,7 @@
     <label for="printOnPos">
       <input type="checkbox" v-model="printOnPos" id="printOnPos"> Imprimir en el POS (no devuelve la información)
     </label>
+      <hr class="m-2">
     <button class="bg-green-600 hover:bg-green-700 px-5 py-2 shadow rounded text-white" @click="getDetails">
       <span v-if="!waiting">Obtener ventas del día</span>
       <span v-if="waiting">Obteniendo...</span>

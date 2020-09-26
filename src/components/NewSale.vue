@@ -51,7 +51,7 @@
                 POS.doSale(this.total, "ticket1").then((saleResponse) => {
                     console.log(saleResponse)
                     //Acá llega la respuesta de la venta. Si saleResponse.responseCode es 0, entonces la comproa fue aprobada
-                    if (saleResponse.sale.responseCode === 0) {
+                    if (saleResponse.responseCode === 0) {
                         // Mostramos mensaje de éxito y limpiamos el total de la venta si response code es 0
                         swal("Transacción aprobada", "", "success")
                         this.clearTotal()

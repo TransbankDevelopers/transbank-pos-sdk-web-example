@@ -1,31 +1,36 @@
 {
-  "name": "pos-web-sdk-example",
-  "version": "1.1.0",
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
-  },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "register-service-worker": "^1.7.1",
-    "sweetalert": "^2.1.2",
-    "tailwindcss": "^1.4.6",
-    "transbank-pos-sdk-web": "^2.0.0",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-e2e-cypress": "~4.4.0",
-    "@vue/cli-plugin-pwa": "~4.4.0",
-    "@vue/cli-plugin-router": "~4.4.0",
-    "@vue/cli-plugin-unit-jest": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
-    "@vue/test-utils": "^1.0.3",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
-  }
+    "name": "pos-web-sdk-example",
+    "version": "1.1.0",
+    "license": "BSD-3-Clause",
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "test:unit": "vue-cli-service test:unit",
+        "test:e2e": "vue-cli-service test:e2e"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/TransbankDevelopers/transbank-pos-sdk-web-example"
+    },
+    "dependencies": {
+        "core-js": "^3.6.5",
+        "register-service-worker": "^1.7.1",
+        "sweetalert": "^2.1.2",
+        "tailwindcss": "^1.4.6",
+        "transbank-pos-sdk-web": "^2.1.0",
+        "vue": "^2.6.11",
+        "vue-router": "^3.2.0"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.4.0",
+        "@vue/cli-plugin-e2e-cypress": "~4.4.0",
+        "@vue/cli-plugin-pwa": "~4.4.0",
+        "@vue/cli-plugin-router": "~4.4.0",
+        "@vue/cli-plugin-unit-jest": "~4.4.0",
+        "@vue/cli-service": "~4.4.0",
+        "@vue/test-utils": "^1.0.3",
+        "sass": "^1.26.5",
+        "sass-loader": "^8.0.2",
+        "vue-template-compiler": "^2.6.11"
+    }
 }

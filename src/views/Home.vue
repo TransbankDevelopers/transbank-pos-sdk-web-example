@@ -12,7 +12,7 @@
 
       <span class="font-normal ml-auto"
             @click="closeConenction">
-        Conexión con socket: <span class="font-bold">{{ socketConnected ? "Conectado" : "No conectado" }}</span>
+        Conexión con agente: <span class="font-bold">{{ socketConnected ? "Conectado" : "No conectado" }}</span>
       </span>
     </div>
     <div class=" shadow rounded bg-white p-2 mt-2">
@@ -93,14 +93,22 @@
         },
         async mounted() {
             try {
+                // POS.on('disconnect', () => {
+                //     swal("Se perdió la conexión con el Agente", "Verifique que el agente se haya inicializado en este computador", "error");
+                // })
                 await POS.connect()
                 this.socketConnected = true
                 let response = await POS.getPortStatus()
                 this.connected = response.connected;
                 this.activePort = response.activePort;
+
+                // POS.on('connect', () => {
+                //     swal("Se recuperó la conexión con el Agente", "", "success");
+                // })
+
             } catch (e) {
-              console.log(e);
-                swal("No se pudo conectar con el software cliente", "Verifique que el cliente se haya inicializado en este computador", "error")
+                console.log('Conexión con el agente fallida: ', e);
+                swal("No se pudo conectar con el agente Transbank POS", "Verifique que el agente se haya inicializado en este computador", "error")
             }
         },
         data() {

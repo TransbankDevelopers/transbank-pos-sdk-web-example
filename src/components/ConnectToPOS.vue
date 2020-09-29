@@ -56,7 +56,7 @@
                   console.log('ports', ports)
                     this.ports = ports
                 }).catch(() => {
-                    swal("No se pudo obtener puertos.", "¿Está corriendo el servicio Transbank POS?", "error")
+                    swal("No se pudo obtener puertos.", "¿Está corriendo el agente Transbank POS?", "error")
                 })
             },
 

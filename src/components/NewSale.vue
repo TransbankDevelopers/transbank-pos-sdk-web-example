@@ -48,7 +48,9 @@
                 })
 
                 this.saleResponse = null
-                POS.doSale(this.total, "ticket1").then((saleResponse) => {
+                POS.doSale(this.total, "ticket1", (data) => {
+                    console.log('Mensaje intermedio', data)
+                }).then((saleResponse) => {
                     console.log(saleResponse)
                     //Acá llega la respuesta de la venta. Si saleResponse.responseCode es 0, entonces la comproa fue aprobada
                     if (saleResponse.responseCode === 0) {

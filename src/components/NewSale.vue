@@ -23,6 +23,10 @@
       <span class="ml-auto" v-if="total > 0">
         <button class="bg-green-600 hover:bg-green-700 px-5 py-2 shadow rounded text-white" @click="doSale">Realizar venta</button>
       </span>
+        <span class="ml-auto" v-if="total > 0">
+            <span>Solo para versión 19.2+</span>
+        <button class="bg-green-600 hover:bg-green-700 px-5 py-2 shadow rounded text-white" @click="doMulticodeSale">Realizar venta multicódigo</button>
+      </span>
 
     </div>
 
@@ -49,6 +53,32 @@
 
                 this.saleResponse = null
                 POS.doSale(this.total, "ticket1", (data) => {
+                    console.log('Mensaje intermedio', data)
+                }).then((saleResponse) => {
+                    console.log(saleResponse)
+                    //Acá llega la respuesta de la venta. Si saleResponse.responseCode es 0, entonces la comproa fue aprobada
+                    if (saleResponse.responseCode === 0) {
+                        // Mostramos mensaje de éxito y limpiamos el total de la venta si response code es 0
+                        swal("Transacción aprobada", "", "success")
+                        this.clearTotal()
+                    } else {
+                        // Mostramos mensaje de error si response code es distinto de 0
+                        swal("Transacción fallida", "La transacción no ha sido aprobada. Puede reintentar pago", "error")
+                    }
+
+                    this.saleResponse = saleResponse
+
+                })
+            },
+            doMulticodeSale() {
+                // Hacer la venta y cuando llegue la respuesta, vaciar la venta y guardar los detalles de la transacción en
+                // la variable saleResponse para poder mostrarlos
+                swal("Solicite al cliente que opere el POS", {
+                    buttons: false,
+                })
+
+                this.saleResponse = null
+                POS.doMulticodeSale(this.total, "ticket12", "597029414301", (data) => {
                     console.log('Mensaje intermedio', data)
                 }).then((saleResponse) => {
                     console.log(saleResponse)

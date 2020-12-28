@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transbank POS Demo</title>
+    <script src="https://unpkg.com/transbank-pos-sdk-web@2.2.3/dist/pos.js"></script>
+    <script>
+        let POS = Transbank.POS;
+
+        // Declaramos una función async para poder usar await y simplificar enormemente el flujo asíncrono de respuestas.
+        async function init() {
+            let isSocketConnected = await POS.connect()
+            if (!isSocketConnected) {
+                alert('No se puede encontrar el cliente Transbank POS. Verificar que se haya iniciado');
+                return;
+            }
+            let portStatus = await POS.getPortStatus()
+            let connectedPort = null;
+            if (portStatus.connected) {
+                alert('Ya está conectado al equipo POS: ' + portStatus.activePort);
+                connectedPort = portStatus.activePort;
+            } else {
+                console.log('Intentando conectar de manera automatica a algún POS...');
+                let response = await POS.autoconnect();
+                if (response === false) {
+                    alert('No se pudo conectar a ningún POS');
+                    return;
+                }
+                connectedPort = response.port;
+            }
+
+            //Si estoy acá es porque ya estoy conectado a un POS.
+            console.log('Connectado correctamente a ' + connectedPort + '. Vamos a realizar una carga de llaves y una venta...');
+            let loadKeysResponse = await POS.loadKeys();
+            console.log('Carga de llaves: ', loadKeysResponse);
+
+            let saleResponse = await POS.doSale(prompt('Ingresa monto para la venta (solo números): '), 'ticket1312');
+            console.log('Carga de llaves: ', saleResponse);
+
+        }
+
+        // Ejecutamos la función.
+        init();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -28,6 +28,8 @@ docker-compose down
 #### Abrir aplicación
 La aplicación se ejecutará en [http://localhost:8000](http://localhost:8000) (y fallará en caso de que el puerto 8000 no esté disponible)
 
+### Ejemplo básico
+Si necesitas una prueba de concepto, solo cargando la librería desde un CDN (o una copia local de pos.js) entonces prueba con este [ejemplo simplificado](https://github.com/TransbankDevelopers/transbank-pos-sdk-web-example/blob/master/public/basic.html) 
 
 ### B Usando tu sistema
 Para ejecutar el proyecto usando tu sistema, es necesario tener instalado: 

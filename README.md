@@ -9,7 +9,10 @@ Este ejemplo presenta un sistema de caja de demostración que usa el SDK para co
 Para que el ejemplo funcione correctamente, es necesario tener andando [el cliente del SDK Web](http://github.com/TransbankDevelopers/transbank-pos-sdk-web-client)
 
 Además, es importante tener el POS conectado al mismo equipo en el que se ejecuta **el cliente del SDK Web** y en el que también se ejecutará este ejemplo. 
-## 1. Ejecutar ejemplo
+## Ejecutar ejemplo básico
+Si necesitas una prueba de concepto, solo cargando la librería desde un CDN (o una copia local de pos.js), sin Vue ni ninguna dependencia adicional, entonces prueba con este [ejemplo simplificado](https://github.com/TransbankDevelopers/transbank-pos-sdk-web-example/blob/master/public/basic.html)
+
+## 1. Ejecutar ejemplo completo
 
 ### A) Usando Docker
 Para ejecutar el proyecto de esta forma, es necesario tener instalado: 
@@ -27,9 +30,6 @@ docker-compose down
 
 #### Abrir aplicación
 La aplicación se ejecutará en [http://localhost:8000](http://localhost:8000) (y fallará en caso de que el puerto 8000 no esté disponible)
-
-### Ejemplo básico
-Si necesitas una prueba de concepto, solo cargando la librería desde un CDN (o una copia local de pos.js) entonces prueba con este [ejemplo simplificado](https://github.com/TransbankDevelopers/transbank-pos-sdk-web-example/blob/master/public/basic.html) 
 
 ### B Usando tu sistema
 Para ejecutar el proyecto usando tu sistema, es necesario tener instalado: 

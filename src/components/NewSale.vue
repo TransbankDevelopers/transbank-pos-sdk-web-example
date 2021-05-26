@@ -53,7 +53,10 @@
 
                 this.saleResponse = null
                 POS.doSale(this.total, "ticket1", (data) => {
-                    console.log('Mensaje intermedio', data)
+                    console.log('Mensaje intermedio', data);
+                    swal(data.responseMessage, {
+                        buttons: false,
+                    });
                 }).then((saleResponse) => {
                     console.log(saleResponse)
                     //Acá llega la respuesta de la venta. Si saleResponse.responseCode es 0, entonces la comproa fue aprobada

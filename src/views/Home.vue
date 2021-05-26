@@ -30,6 +30,9 @@
         <div class="flex flex-wrap border-t">
           <!-- Puedes revisar este componente en src/components/LastSale.vue 😌 -->
           <div class="box">
+            <poll></poll>
+          </div>
+          <div class="box">
             <last-sale></last-sale>
           </div>
           <div class="box">
@@ -86,28 +89,29 @@
     import GetSalesOfTheDay from "../components/GetSalesOfTheDay"
     import Refund from "../components/Refund"
     import GetTotals from "../components/GetTotals"
+    import Poll from "../components/Poll"
 
     export default {
         components: {
-            ConnectToPos, NewSale, LastSale, LoadKeys, SetNormalMode, CloseDay, GetSalesOfTheDay, Refund, GetTotals
+            ConnectToPos, NewSale, LastSale, LoadKeys, SetNormalMode, CloseDay, GetSalesOfTheDay, Refund, GetTotals, Poll
         },
         async mounted() {
             try {
-                // POS.on('disconnect', () => {
+                // POS.socket().on('disconnect', () => {
                 //     swal("Se perdió la conexión con el Agente", "Verifique que el agente se haya inicializado en este computador", "error");
                 // })
                 await POS.connect()
-                this.socketConnected = true
+                this.socketConnected = POS.isConnected;
                 let response = await POS.getPortStatus()
                 this.connected = response.connected;
                 this.activePort = response.activePort;
 
-                // POS.on('connect', () => {
+                // POSsocket().on('connect', () => {
                 //     swal("Se recuperó la conexión con el Agente", "", "success");
                 // })
 
             } catch (e) {
-                console.log('Conexión con el agente fallida: ', e);
+                console.error('Conexión con el agente fallida: ', e);
                 swal("No se pudo conectar con el agente Transbank POS", "Verifique que el agente se haya inicializado en este computador", "error")
             }
         },

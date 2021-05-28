@@ -25,33 +25,36 @@
 
       <div v-if="connected" class="px-10 pb-20">
         <!-- Puedes revisar este componente en src/components/NewSale.vue 😌 -->
-        <new-sale class="pb-20"></new-sale>
+        <new-sale class="pb-20" @onSaleResponse="setResultData"></new-sale>
 
+        <div class="border-t">
+          <operation-result :result-data="resultData"></operation-result>
+        </div>
         <div class="flex flex-wrap border-t">
           <!-- Puedes revisar este componente en src/components/LastSale.vue 😌 -->
           <div class="box">
-            <poll></poll>
+            <poll @onPollResponse="setResultData"></poll>
           </div>
           <div class="box">
-            <last-sale></last-sale>
+            <last-sale @onLastSaleResponse="setResultData"></last-sale>
           </div>
           <div class="box">
-            <load-keys></load-keys>
+            <load-keys @onLoadKeyResponse="setResultData"></load-keys>
           </div>
           <div class="box">
-            <set-normal-mode></set-normal-mode>
+            <set-normal-mode @onNormalModeResponse="setResultData"></set-normal-mode>
           </div>
           <div class="box">
-            <close-day></close-day>
+            <close-day @onCloseDayResponse="setResultData"></close-day>
           </div>
           <div class="box">
-            <get-sales-of-the-day></get-sales-of-the-day>
+            <get-sales-of-the-day @onGetSales="setResultData"></get-sales-of-the-day>
           </div>
           <div class="box">
-            <refund></refund>
+            <refund @onRefundResponse="setResultData"></refund>
           </div>
           <div class="box">
-            <get-totals></get-totals>
+            <get-totals @onGetTotalsResponse="setResultData"></get-totals>
           </div>
 
         </div>
@@ -90,18 +93,38 @@
     import Refund from "../components/Refund"
     import GetTotals from "../components/GetTotals"
     import Poll from "../components/Poll"
+    import OperationResult from "../components/OperationResult"
 
     export default {
         components: {
-            ConnectToPos, NewSale, LastSale, LoadKeys, SetNormalMode, CloseDay, GetSalesOfTheDay, Refund, GetTotals, Poll
+            ConnectToPos, NewSale, LastSale, LoadKeys, SetNormalMode, CloseDay, GetSalesOfTheDay, Refund, GetTotals, Poll, OperationResult
         },
         async mounted() {
             try {
                 // POS.socket().on('disconnect', () => {
                 //     swal("Se perdió la conexión con el Agente", "Verifique que el agente se haya inicializado en este computador", "error");
                 // })
+
+                POS.on('socket_connected', () => {
+                  this.socketConnected = true;
+                })
+
+                POS.on('socket_disconnected', () => {
+                  this.socketConnected = false;
+                })
+
+                POS.on('port_opened', (port) => {
+                  this.activePort = port;
+                  this.connected = true;
+                })
+
+                POS.on('port_closed', () => {
+                  this.activePort = null;
+                  this.connected = false;
+                })
+
                 await POS.connect()
-                this.socketConnected = POS.isConnected;
+
                 let response = await POS.getPortStatus()
                 this.connected = response.connected;
                 this.activePort = response.activePort;
@@ -120,6 +143,7 @@
                 socketConnected: false,
                 connected: false,
                 activePort: null,
+                resultData: null,
             }
         },
         methods: {
@@ -131,6 +155,9 @@
             onConnect(port) {
                 this.activePort = port
                 this.connected = true
+            },
+            setResultData(data) {
+              this.resultData = data
             },
         },
     }

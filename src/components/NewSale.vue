@@ -41,10 +41,15 @@
 <script>
     import POS from "transbank-pos-sdk-web"
     import swal from "sweetalert"
+    import OperationResult from "../components/OperationResult"
 
     export default {
+        components: {
+            OperationResult,
+        },
         methods: {
             doSale() {
+                this.$emit('onSaleResponse', null)
                 // Hacer la venta y cuando llegue la respuesta, vaciar la venta y guardar los detalles de la transacción en
                 // la variable saleResponse para poder mostrarlos
                 swal("Solicite al cliente que opere el POS", {
@@ -69,11 +74,13 @@
                         swal("Transacción fallida", "La transacción no ha sido aprobada. Puede reintentar pago", "error")
                     }
 
-                    this.saleResponse = saleResponse
+                    this.$emit('onSaleResponse', saleResponse)
+                    // this.saleResponse = saleResponse
 
                 })
             },
             doMulticodeSale() {
+                this.$emit('onSaleResponse', null)
                 // Hacer la venta y cuando llegue la respuesta, vaciar la venta y guardar los detalles de la transacción en
                 // la variable saleResponse para poder mostrarlos
                 swal("Solicite al cliente que opere el POS", {
@@ -95,7 +102,8 @@
                         swal("Transacción fallida", "La transacción no ha sido aprobada. Puede reintentar pago", "error")
                     }
 
-                    this.saleResponse = saleResponse
+                    this.$emit('onSaleResponse', saleResponse)
+                    // this.saleResponse = saleResponse
 
                 })
             },

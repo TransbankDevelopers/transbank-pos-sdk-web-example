@@ -31,7 +31,8 @@
                 this.waiting = true;
                 this.response = null;
                 POS.refund(this.operationId).then((response) => {
-                    this.response = response
+                    this.$emit('onRefundResponse', response)
+                    // this.response = response
                 }).finally(() => {
                     this.waiting = false;
                 })

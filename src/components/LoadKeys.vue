@@ -24,7 +24,8 @@
                 this.waiting = true
                 this.result = null
                 POS.getKeys().then((response) => {
-                    this.result = response
+                    this.$emit('onLoadKeyResponse', response)
+                    // this.result = response
                 }).finally(() => {
                     this.waiting = false
                 })

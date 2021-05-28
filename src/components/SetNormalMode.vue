@@ -25,7 +25,8 @@
                 this.waiting = true;
                 this.response = null;
                 POS.setNormalMode().then((response) => {
-                    this.response = response
+                    this.$emit('onNormalModeResponse', response)
+                    // this.response = response
                 }).finally(() => {
                     this.waiting = false;
                 })

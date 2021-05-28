@@ -30,7 +30,8 @@
                 this.waiting = true;
                 this.response = null;
                 POS.getDetails(this.printOnPos).then((response) => {
-                    this.response = response
+                    this.$emit('onGetSales', response)
+                    // this.response = response
                 }).finally(() => {
                     this.waiting = false;
                 })

@@ -25,7 +25,8 @@
                 this.waiting = true;
                 this.lastSale = null;
                 POS.getLastSale().then((response) => {
-                    this.lastSale = response
+                    this.$emit('onLastSaleResponse', response)
+                    // this.lastSale = response
                 }).finally(() => {
                     this.waiting = false;
                 })

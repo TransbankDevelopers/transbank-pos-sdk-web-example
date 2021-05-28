@@ -25,7 +25,8 @@
                 this.waiting = true;
                 this.response = null;
                 POS.closeDay().then((response) => {
-                    this.response = response
+                    this.$emit('onCloseDayResponse', response)
+                    // this.response = response
                 }).finally(() => {
                     this.waiting = false;
                 })

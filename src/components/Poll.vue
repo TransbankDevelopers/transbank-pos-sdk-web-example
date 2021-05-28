@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2 class="text-xl">Salir de modo integrado</h2>
-    <button class="bg-green-600 hover:bg-green-700 px-5 py-2 shadow rounded text-white" @click="setNormalMode">
-      <span v-if="!waiting">Salir de modo integrado</span>
-      <span v-if="waiting">Saliendo...</span>
+    <h2 class="text-xl">Poll</h2>
+    <button class="bg-green-600 hover:bg-green-700 px-5 py-2 shadow rounded text-white" @click="poll">
+      <span v-if="!waiting">Realizar Poll</span>
+      <span v-if="waiting">Haciendo Poll...</span>
     </button>
     <pre>{{ response }}</pre>
   </div>
@@ -19,13 +19,13 @@
             }
         },
         methods: {
-            setNormalMode() {
+            poll() {
                 if (this.waiting) return;
 
                 this.waiting = true;
                 this.response = null;
-                POS.setNormalMode().then((response) => {
-                    this.$emit('onNormalModeResponse', response)
+                POS.poll().then((response) => {
+                    this.$emit('onPollResponse', response)
                     // this.response = response
                 }).finally(() => {
                     this.waiting = false;

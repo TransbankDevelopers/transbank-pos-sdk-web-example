@@ -25,7 +25,8 @@ export default {
             this.waiting = true;
             this.response = null;
             POS.getTotals().then((response) => {
-                this.response = response;
+                this.$emit('onGetTotalsResponse', response)
+                // this.response = response;
             }).finally(() => {
                 this.waiting = false;
             });

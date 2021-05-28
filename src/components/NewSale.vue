@@ -41,10 +41,15 @@
 <script>
     import POS from "transbank-pos-sdk-web"
     import swal from "sweetalert"
+    import OperationResult from "../components/OperationResult"
 
     export default {
+        components: {
+            OperationResult,
+        },
         methods: {
             doSale() {
+                this.$emit('onSaleResponse', null)
                 // Hacer la venta y cuando llegue la respuesta, vaciar la venta y guardar los detalles de la transacción en
                 // la variable saleResponse para poder mostrarlos
                 swal("Solicite al cliente que opere el POS", {
@@ -53,7 +58,10 @@
 
                 this.saleResponse = null
                 POS.doSale(this.total, "ticket1", (data) => {
-                    console.log('Mensaje intermedio', data)
+                    console.log('Mensaje intermedio', data);
+                    swal(data.responseMessage, {
+                        buttons: false,
+                    });
                 }).then((saleResponse) => {
                     console.log(saleResponse)
                     //Acá llega la respuesta de la venta. Si saleResponse.responseCode es 0, entonces la comproa fue aprobada
@@ -66,11 +74,13 @@
                         swal("Transacción fallida", "La transacción no ha sido aprobada. Puede reintentar pago", "error")
                     }
 
-                    this.saleResponse = saleResponse
+                    this.$emit('onSaleResponse', saleResponse)
+                    // this.saleResponse = saleResponse
 
                 })
             },
             doMulticodeSale() {
+                this.$emit('onSaleResponse', null)
                 // Hacer la venta y cuando llegue la respuesta, vaciar la venta y guardar los detalles de la transacción en
                 // la variable saleResponse para poder mostrarlos
                 swal("Solicite al cliente que opere el POS", {
@@ -92,7 +102,8 @@
                         swal("Transacción fallida", "La transacción no ha sido aprobada. Puede reintentar pago", "error")
                     }
 
-                    this.saleResponse = saleResponse
+                    this.$emit('onSaleResponse', saleResponse)
+                    // this.saleResponse = saleResponse
 
                 })
             },

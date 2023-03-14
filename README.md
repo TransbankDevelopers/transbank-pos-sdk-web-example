@@ -1,14 +1,14 @@
 # Proyecto de ejemplo usando el SDK Web para POS
-El siguiente proyecto es un ejemplo de POS integrado utilizando el SDK WEB, que consta de un SDK de Javscript para la parte web y un programa cliente que corre en el computador que tiene conectado físicamente el POS
+El siguiente proyecto es un ejemplo de POS integrado utilizando el SDK WEB, que consta de un SDK de Javascript para la parte web y un programa agente que corre en el computador que tiene conectado físicamente el POS
 
 Este proyecto es una aplicación realizada en Vue.js que permite demostrar el funcionamiento del SDK Web. 
 El código importante está en `src/views/Home.vue` donde se encontrarán varios componentes de Vue `src/components/` ya que cada funcionalidad como el área de nueva venta, carga de llaves y obtener última venta están separados en un componente de Vue para ordenar mejor el código y que sea más entendible. 
 
 #Antes de empezar
 Este ejemplo presenta un sistema de caja de demostración que usa el SDK para conectarse y realizar tareas con el POS. 
-Para que el ejemplo funcione correctamente, es necesario tener andando [el cliente del SDK Web](http://github.com/TransbankDevelopers/transbank-pos-sdk-web-client)
+Para que el ejemplo funcione correctamente, es necesario tener andando [el agente del SDK Web](https://github.com/TransbankDevelopers/transbank-pos-sdk-web-agent)
 
-Además, es importante tener el POS conectado al mismo equipo en el que se ejecuta **el cliente del SDK Web** y en el que también se ejecutará este ejemplo. 
+Además, es importante tener el POS conectado al mismo equipo en el que se ejecuta **el agente del SDK Web** y en el que también se ejecutará este ejemplo. 
 ## Ejecutar ejemplo básico
 Si necesitas una prueba de concepto, solo cargando la librería desde un CDN (o una copia local de pos.js), sin Vue ni ninguna dependencia adicional, entonces prueba con este [ejemplo simplificado](https://github.com/TransbankDevelopers/transbank-pos-sdk-web-example/blob/master/public/basic.html)
 

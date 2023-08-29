@@ -129,14 +129,14 @@
                         "image": "/img/sandwich1.png",
                         "price": 3500,
                     }, {
-                        "name": "Taco",
-                        "image": "/img/taco.png",
-                        "price": 2000,
+                        "name": "Chocolate",
+                        "image": "/img/chocolate1.png",
+                        "price": 50,
                     },
                     {
                         "name": "Café",
                         "image": "/img/coffee1.png",
-                        "price": 100,
+                        "price": 50,
                     },
                 ],
             }

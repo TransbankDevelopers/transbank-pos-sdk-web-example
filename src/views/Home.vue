@@ -12,7 +12,7 @@
 
       <span class="font-normal ml-auto"
             @click="closeConenction">
-        Conexión con agente: <span class="font-bold">{{ socketConnected ? "Conectado" : "No conectado" }}</span>
+        Conexión con agente(v4.x o superior): <span class="font-bold">{{ socketConnected ? "Conectado" : "No conectado" }}</span>
       </span>
     </div>
     <div class=" shadow rounded bg-white p-2 mt-2">
